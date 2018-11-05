@@ -12,6 +12,7 @@ This publication is the result of my undergraduate honors thesis. The paper is a
 
 - `herbarium/`: directory containing data and R script files for analysis
 
-- `figures/`: final figures used in submission. These can all be regenerated using scripts and data contained here. 
-
 - `submission-materials/`: These are temporarily stored here until publication. 
+    - `jpeg-figures/`: final figures of submission. These can all be reproduced using data and analyses contained here. 
+    - `AoBP-supplementary.pdf` contains results of several analyses mentioned in the paper. 
+    - Check out the cool camera trap recording of a rufous hummingbird feeding at *Aquilegia* flowers!

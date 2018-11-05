@@ -25,7 +25,7 @@ h <- h[-an, ]
 
 with(h, boxplot(bill.length ~ species, 
                 horizontal = TRUE, pch = 16, xlim = c(0,5), at = c(3,2), 
-                cex.axis = 1.2, ylim = c(10,30), yaxt = "n", lty = 1,
+                cex.axis = 1.2, ylim = c(5,30), yaxt = "n", lty = 1,
                 col = rgb(30/255,144/255,1,.6)))
 
 boxplot(a$spur.length[fo]*10, at = 1, add = TRUE, 
