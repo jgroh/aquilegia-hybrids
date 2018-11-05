@@ -1,28 +1,17 @@
-library(adegenet)
+source("collections/microsat-analysis/scripts/microsat-src.R")
 
 # ===== Comments =====
-# Analysis and visualization of STRUCTURE results. Results published in Groh et al. 2018. AoBP. 
+# Analysis and visualization of STRUCTURE results. 
 # Input files are (1) str file with microsatellite genoytypes (11 microsat loci fr 72 Aquilegia individuals from 5 pops)
 # and (2) output file from CLUMPP giving mean Q-matrix from 20 replicate runs. 
 
-
 # ===== Read Files =====
 
-#read structure file
-str <- read.structure(file = "collections/microsat-analysis/data/Aquilegia-final-micros-AoBP.str",
-                    n.ind = 72, n.loc = 11, onerowperind = T, col.lab = 1, col.pop = 2,
-                    col.others = 3, row.marknames = 1, NA.char = "-9")
+# The .str file containing genotypes is read in by the sourced script. 
 
 # read CLUMPP output file
 q <- read.table("collections/microsat-analysis/data/CLUMPP-files/aq_outfile")
 q <- as.matrix(q[, c(6:7)])
-
-
-# ===== Check Sample Sizes =====
-
-id <- substr(rownames(str@tab), start = 1, stop = 2)
-id[which(id == "St")] <- "PP"
-table(id)
 
 
 # ===== Calculate Avg. Ancestry Per Parent in Hybrids =====

@@ -1,26 +1,8 @@
 library(adegenet)
-library(pegas)
 library(hierfstat)
+library(poppr)
 
-# ===== Read & Index Data File =====
-str <- read.structure(file = "collections/microsat-analysis/data/Aquilegia-final-micros-AoBP.str", 
-                      n.ind = 72, n.loc = 11, onerowperind = T, col.lab = 1, col.pop = 2,
-                      col.others = 3, row.marknames = 1, NA.char = "-9")
-
-id <- rownames(str$tab)
-
-BL <- grep("BL", id)
-MK <- grep("MK", id)
-PP <- grep("PP|St", id)
-RL <- grep("RL", id)
-WG <- grep("WG", id)
-
-pops <- vector()
-pops[BL] <- 1
-pops[MK] <- 2
-pops[PP] <- 3
-pops[RL] <- 4
-pops[WG] <- 5
+source('collections/microsat-analysis/scripts/microsat-src.R')
 
 # ===== Locus Summaries =====
 

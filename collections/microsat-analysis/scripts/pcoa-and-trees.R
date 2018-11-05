@@ -2,32 +2,7 @@ library(poppr)
 library(ape)
 library(phangorn)
 
-# ===== Read & Index Data Files =====
-
-# data contains genotypes of 72 individuals for 11 microsatellite loci. 
-# population labels refer to sampling sites. 1=Beehive Lakes, 2=Mt. Kobau (Aquilegia flavescens), 
-# 3=Porcupine Ridge (hybrid); 4=Robert's lake, 5=Clearwater (A. formosa).
-
-#read structure file
-str <- read.structure(file = "collections/microsat-analysis/data/Aquilegia-final-micros-AoBP.str", 
-                      n.ind = 72, n.loc = 11, onerowperind = T, col.lab = 1, col.pop = 2,
-                      col.others = 3, row.marknames = 1, NA.char = "-9")
-
-tab <- str@tab
-
-BL <- grep("BL", rownames(tab))
-MK <- grep("MK", rownames(tab))
-PP <- grep("PP|St", rownames(tab))
-RL <- grep("RL", rownames(tab))
-WG <- grep("WG", rownames(tab))
-
-pops <- vector()
-pops[BL] <- 1
-pops[MK] <- 2
-pops[PP] <- 3
-pops[RL] <- 4
-pops[WG] <- 5
-
+source("collections/microsat-analysis/scripts/microsat-src.R")
 
 # ===== Principal Coordinate Analysis =====
 
