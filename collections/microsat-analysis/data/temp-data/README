@@ -1,0 +1,5 @@
+'Aquilegia_micros_2018_new_data_Oct.xlsx' and 'Aquilegia_micros_2018_revised_checked.xlsx' are files downloaded via email from DP on Oct 27, 2018. These are the final data to be used in analysis for the AoB submission. 
+
+Each file is reformatted and final results are put into a str format with data for one individual in one row.  
+
+In 'Aquilegia_micros_2018_revised_checked_reformatted_synced', blue highlighting indicates alleles that have been 'synced' in marker 270. There were two series, off by one repeat (and one allele off by two repeats). These were synced to the common series by changing allele lengths by one (or two for a few cases). Red highlighting indicates missing data. Entire rows highlighted in red indicate individuals which are removed from the analysis. 

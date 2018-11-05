@@ -1,0 +1,100 @@
+id,species,population,sucrose.concentration
+WG1_005,A. formsosa,Clearwater,17.25
+WG1_007,A. formsosa,Clearwater,12.5
+WG1_002,A. formsosa,Clearwater,25.75
+WG2_006,A. formsosa,Clearwater,27.5
+WG2_007,A. formsosa,Clearwater,28
+WG2_nc01,A. formsosa,Clearwater,28
+WG2_nc02,A. formsosa,Clearwater,29
+WG3_001,A. formsosa,Clearwater,24
+WG3_002,A. formsosa,Clearwater,21
+WG3_nc01,A. formsosa,Clearwater,18.5
+WG4_002,A. formsosa,Clearwater,25
+WG4_003,A. formsosa,Clearwater,32
+WG4_nc01,A. formsosa,Clearwater,29.25
+WG4_004,A. formsosa,Clearwater,24.5
+WG4_007,A. formsosa,Clearwater,36
+WG4_008,A. formsosa,Clearwater,29
+WG4_009,A. formsosa,Clearwater,33
+WG4_010,A. formsosa,Clearwater,25
+WG4_nc02,A. formsosa,Clearwater,30.2
+WG4_nc04,A. formsosa,Clearwater,29
+WG4_nc13,A. formsosa,Clearwater,30.5
+WG4_nc14,A. formsosa,Clearwater,28
+WG4_nc15,A. formsosa,Clearwater,31.5
+RL_nc01,A. formosa,Robert's Lake,22
+RL_nc02,A. formosa,Robert's Lake,22
+RL_nc03,A. formosa,Robert's Lake,20
+RL_nc04,A. formosa,Robert's Lake,23
+RL_nc05,A. formosa,Robert's Lake,24
+RL_nc06,A. formosa,Robert's Lake,31
+RL_nc07,A. formosa,Robert's Lake,25
+RL_nc08,A. formosa,Robert's Lake,20
+RL_nc09,A. formosa,Robert's Lake,25
+RL_nc10,A. formosa,Robert's Lake,26
+RL_nc11,A. formosa,Robert's Lake,29
+RL_nc12,A. formosa,Robert's Lake,24
+RL_nc13,A. formosa,Robert's Lake,19
+RL_nc14,A. formosa,Robert's Lake,23
+RL_nc15,A. formosa,Robert's Lake,21
+RL_nc16,A. formosa,Robert's Lake,22
+KO_01,A. flavescens,Mt. Kobau,46
+KO_02,A. flavescens,Mt. Kobau,48
+KO_03,A. flavescens,Mt. Kobau,30
+KO_04,A. flavescens,Mt. Kobau,32
+KO_05,A. flavescens,Mt. Kobau,26
+KO_06,A. flavescens,Mt. Kobau,29
+KO_07,A. flavescens,Mt. Kobau,35
+KO_08,A. flavescens,Mt. Kobau,35
+KO_09,A. flavescens,Mt. Kobau,39
+KO_10,A. flavescens,Mt. Kobau,44
+KO_11,A. flavescens,Mt. Kobau,37
+KO_12,A. flavescens,Mt. Kobau,25
+KO_13,A. flavescens,Mt. Kobau,20
+KO_14,A. flavescens,Mt. Kobau,29
+KO_15,A. flavescens,Mt. Kobau,27
+KO_16,A. flavescens,Mt. Kobau,34
+KO_17,A. flavescens,Mt. Kobau,30
+KO_18,A. flavescens,Mt. Kobau,29
+KO_19,A. flavescens,Mt. Kobau,49
+KO_20,A. flavescens,Mt. Kobau,28
+KO_21,A. flavescens,Mt. Kobau,30
+KO_22,A. flavescens,Mt. Kobau,42
+KO_23,A. flavescens,Mt. Kobau,38
+KO_24,A. flavescens,Mt. Kobau,43
+KO_25,A. flavescens,Mt. Kobau,23
+KO_26,A. flavescens,Mt. Kobau,43
+KO_27,A. flavescens,Mt. Kobau,37
+KO_28,A. flavescens,Mt. Kobau,32
+KO_29,A. flavescens,Mt. Kobau,37
+KO_30,A. flavescens,Mt. Kobau,36
+PP_05,hybrid,Porcupine Ridge,46
+PP_03,hybrid,Porcupine Ridge,42
+PP_07,hybrid,Porcupine Ridge,31.33
+PP_02,hybrid,Porcupine Ridge,44.33
+PP_09,hybrid,Porcupine Ridge,48
+PP_01,hybrid,Porcupine Ridge,37.33
+PP_12,hybrid,Porcupine Ridge,31.33
+PP_11,hybrid,Porcupine Ridge,40
+PP_10,hybrid,Porcupine Ridge,41
+PP_08,hybrid,Porcupine Ridge,39.33
+PP_13,hybrid,Porcupine Ridge,43
+PP_14,hybrid,Porcupine Ridge,46.33
+PP_15,hybrid,Porcupine Ridge,31
+PP_16,hybrid,Porcupine Ridge,28
+PP_17,hybrid,Porcupine Ridge,36
+PP_18,hybrid,Porcupine Ridge,44.33
+PP_19,hybrid,Porcupine Ridge,41.33
+PP_22,hybrid,Porcupine Ridge,34
+PP_21,hybrid,Porcupine Ridge,43.67
+PP_25,hybrid,Porcupine Ridge,33.33
+PP_23,hybrid,Porcupine Ridge,38
+PP_20,hybrid,Porcupine Ridge,25
+PP_24,hybrid,Porcupine Ridge,25
+PP_28,hybrid,Porcupine Ridge,39
+PP_27,hybrid,Porcupine Ridge,38
+PP_26,hybrid,Porcupine Ridge,46
+PP_29,hybrid,Porcupine Ridge,44.5
+PP_30,hybrid,Porcupine Ridge,43
+PP_31,hybrid,Porcupine Ridge,41
+PP_32,hybrid,Porcupine Ridge,32
