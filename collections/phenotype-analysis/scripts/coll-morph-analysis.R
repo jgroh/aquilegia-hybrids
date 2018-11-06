@@ -1,13 +1,13 @@
 require(MASS)
 library(binom)
 
-# ===== COMMENTS =====
+# ===== Comments =====
 
 # This script conducts floral morphometric analyses done on natural populations of
 # Aquilegia formosa, A. flavescens, and hybrids. 
 # Results of these analyses are published in 
 
-# ===== READ AND FORMAT DATA =====
+# ===== Read and Format Data =====
 
 d <- read.csv("collections/phenotype-analysis/data/collections-phenotypes.csv", stringsAsFactors = FALSE)
 
@@ -21,8 +21,9 @@ hy <- which(d$species == "hybrid")
 fo <- which(d$species == "A. formosa")
 fl <- which(d$species == "A. flavescens")
 
-# training set for LDA
+# training and prediction sets for LDA
 prnt <- d[-hy, c(2, 4:11)] 
+pred <- d[hy, c(2,4:11)]
 
 #remove missing data rows
 na.pheno <- unique(which(is.na(prnt), arr.ind = TRUE)[, 1])
@@ -31,7 +32,7 @@ prnt <- prnt[-na.pheno, ]
 fo.prnt <- which(prnt$species == "A. formosa") 
 fl.prnt <- which(prnt$species == "A. flavescens") 
 
-# CROSS VALIDATION FUNCTION -----
+# Cross Validation Function -----
 
 Vlda = function(v, formula, data, cl){
   # This will split the data randomly into v groups, 
@@ -50,7 +51,7 @@ Vlda = function(v, formula, data, cl){
   table(wh, cl[order(grps)]) 
 }
 
-# FLORAL PHENOTYPE LDA --------------------------------------------------------
+# ===== Execute Floral Phenotype LDA =====
 
 # construct model
 z <- lda(species ~ ., data = prnt, prior = c(.5,.5))
@@ -58,43 +59,44 @@ z$scaling #gives the coefficients of the linear combination of traits
 sc <- predict(z)$x
 
 # apply model to hybrid phenotypes
-hyb <- predict(z, d[hy, c(2,4:11)], prior = c(.5,.5))
+hyb <- predict(z, pred, prior = c(.5,.5))
 hyb.sc <- hyb$x
 
 
-# FL LDA MISSCLASSIFICATION RATE -----
+# # ===== Floral Morphology LDA Missclassification Rate =====
+# 
+# mis <- vector()
+# 
+# # This takes a minute to run
+# for(i in 1:1000){
+#  # calculate the average misclassification rate over 1000 iterations 
+#   
+#  xval <- Vlda(5, species ~ . , data = prnt, cl = prnt$species)
+#  mis[i] <- sum(xval[row(xval) != col(xval)]) / sum(xval)
+# }
+# mean(mis) #0.0002564103
+# 
+# # check error rate with smaller sample size (~= to that in genetic analysis)
+# fl.sub <- prnt[grep("flav", prnt$species), ]
+# fo.sub <- prnt[grep("form", prnt$species), ]
+# 
+# #subset phenotype data set
+# set.seed(123)
+# prnt.sub <- rbind(fl.sub[sample(1:nrow(fl.sub), 15), ], fo.sub[sample(1:nrow(fo.sub), 25), ])
+# 
+# # fit lda model
+# z.sub <- lda(species ~ ., data = prnt.sub, prior = c(.5,.5))
+# 
+# mis.sub <- vector()
+# for(i in 1:1000){
+#   xval <- Vlda(5, species ~ . , data = prnt.sub, cl = prnt.sub$species)
+#   mis.sub[i] <- sum(xval[row(xval) != col(xval)]) / sum(xval)
+# }
+# mean(mis.sub) # 0.00075
 
 
-mis <- vector()
-for(i in 1:1000){
- # calculate the average misclassification rate over 1000 iterations 
-  
- xval <- Vlda(5, species ~ . , data = prnt, cl = prnt$species)
- mis[i] <- sum(xval[row(xval) != col(xval)]) / sum(xval)
-}
-mean(mis) #0.0002564103
 
-# check error rate with smaller sample size (~= to that in genetic analysis)
-fl.sub <- prnt[grep("flav", prnt$species), ]
-fo.sub <- prnt[grep("form", prnt$species), ]
-
-#subset phenotype data set
-set.seed(123)
-prnt.sub <- rbind(fl.sub[sample(1:nrow(fl.sub), 15), ], fo.sub[sample(1:nrow(fo.sub), 25), ])
-
-# fit lda model
-z.sub <- lda(species ~ ., data = prnt.sub, prior = c(.5,.5))
-
-mis.sub <- vector()
-for(i in 1:1000){
-  xval <- Vlda(5, species ~ . , data = prnt.sub, cl = prnt.sub$species)
-  mis.sub[i] <- sum(xval[row(xval) != col(xval)]) / sum(xval)
-}
-mean(mis.sub) # 0.00075
-
-
-
-# AoBP FIGURE 4A: DENSITY PLOT OF FLORAL MORPHOLOGY LDA SCORES ---------
+# AoBP FIGURE 4A: Density Plot of Floral Morphology LDA Scores ---------
 
 dev.off()
 plot.new()
@@ -130,7 +132,7 @@ mtext(text = "Density", side = 2, line = 3, adj =.25, cex = 1.5)
 mtext(text = "Floral morphology discriminant axis", side = 1, line =2, cex = 1.5)
 
 
-# ===== CORRELATION OF LOG(R/G) WITH FLORAL MORPHOLOGY LDA =====
+# ===== Correlation of log(R/G) With Floral Morphology LDA Scores =====
 
 # create log.rg variable
 log.rg <- log(d$red.mean/ d$green.mean)
@@ -138,31 +140,11 @@ log.rg <- log(d$red.mean/ d$green.mean)
 # subset to hybrids
 log.rg.hyb <- log.rg[hy]
 
-# calculate correlation
-cor(log.rg.hyb, hyb.sc, use = "complete.obs")
+# calculate correlation and significance
+cor.test(log.rg.hyb, hyb.sc, alternative = "two.sided", method = "pearson")
 
-# use permutation to assess significance
-set.seed(123)
-iter <- 9999
-x <- log.rg.hyb
-cnt <-0
-cor.obs <- cor(log.rg.hyb, hyb.sc, use="complete.obs")
 
-for(i in 1:iter){
-  z <- x
-  z <- z[sample(1:length(z))]
-  cor.est <- cor(x=z, y= hyb.sc, use="complete.obs")
-  
-  if (abs(cor.est) >= abs(cor.obs)) { 
-    cnt <- cnt + 1
-    }
-  
-}
-cnt
-p.value <- round(as.numeric((cnt +1 )/(iter + 1)),digits = 4)
-p.value #0.109
-
-# ===== INDIVIDUAL TRAIT DISTRIBUTIONS =====
+# ===== Individual Trait Distributions =====
 
 species <- factor(d$species, levels(factor(d$species))[c(1, 3, 2)])
 bg <- c("yellow3", "#ff7880", "#F50000")
@@ -172,7 +154,7 @@ y.axis.labels <- c("Blade length (cm)", "Blade width (cm)", "Corolla width (cm)"
 
 # create multipanel plot showing trait distributions for each of 7 traits
 
-par(mfrow=c(4,2),bty="l",mar=c(2,5,2,2),oma=c(1,0,0,0))
+par(mfrow=c(4,2),bty="l", mar=c(2,5,2,2), oma=c(1,0,0,0))
 
 for(i in 1:7){
 stripchart(d[[traits[i]]] ~ species, vertical = TRUE, method = "jitter",
@@ -210,6 +192,25 @@ prop.test(x = c( sum(fo.bl, na.rm = TRUE), sum(hy.bl)),
           n =  c(length(which(!is.na(fo.bl))), length(hy.bl)), 
           alternative = "two.sided" )
 
-# ===== STOP =====
+# ===== Trait Correlations in Hybrids ===== 
 
+trait.pairs <- expand.grid(trait1 = traits, trait2 = traits, stringsAsFactors = FALSE)
 
+correl <- vector()
+p.value <- vector()
+
+for(i in 1:nrow(trait.pairs)){
+  # calculate correlation and significance for each trait comparison, in hybrids
+  
+  ct <- cor.test( pred[, trait.pairs[i, 1]], pred[, trait.pairs[i, 2]])
+  correl[i] <- ct$estimate
+  p.value[i] <- ct$p.value
+}
+
+trait.pairs$correl <- correl
+trait.pairs$p.value <- round(p.value, 5)
+
+# show trait pairs with significant correlations
+trait.pairs[ which(trait.pairs$p.value < 0.05 & trait.pairs$trait1 != trait.pairs$trait2) , ]
+
+# ===== STOP

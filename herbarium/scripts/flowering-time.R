@@ -43,13 +43,9 @@ confint(z2)
 # set up plot
 par(bty = "l", mar =c(5.1,6.1,4.1,2.1))
 
-pch <- as.character(d[,3])
-pch[which(pch == "flavescens")] <- 22
-pch[which(pch == "formosa")] <- 21
-pch <- as.numeric(pch)
-col <- pch
-col[which(col == 21)] <- "#F50000"
-col[which(col == 22)] <- "#F5FF0A"
+col <- as.character(d[, 3])
+col[which(col == "formosa")] <- "#F50000"
+col[which(col == "flavescens")] <- "#F5FF0A"
 
 plot(days ~ d$altitude.corrected, 
      type = "n", xlab ="", ylab = "", 
@@ -81,4 +77,3 @@ axis(1, las = 1, cex.axis = 1.2)
 
 
 # ===== STOP
-
